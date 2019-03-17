@@ -1,14 +1,19 @@
 package eu.jprichter.cashplanner2.general.logic.base;
 
-import eu.jprichter.cashplanner2.general.common.base.AbstractBeanMapperSupport;
-
-import com.devonfw.module.basic.common.api.entity.GenericEntity;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+
+import com.devonfw.module.basic.common.api.entity.GenericEntity;
+import com.devonfw.module.basic.common.api.entity.PersistenceEntity;
+
+import eu.jprichter.cashplanner2.general.common.base.AbstractBeanMapperSupport;
 
 /**
  * Abstract base class for implementations of <em>business logic</em> in this application. Actual implementations need
@@ -29,8 +34,8 @@ public abstract class AbstractLogic extends AbstractBeanMapperSupport {
 
   /**
    * Creates a {@link Map} with all {@link GenericEntity entities} from the given {@link Collection} using their
-   * {@link GenericEntity#getId() ID} as key. All {@link GenericEntity entities} without an
-   * {@link GenericEntity#getId() ID} ({@code null}) will be ignored.
+   * {@link GenericEntity#getId() ID} as key. All {@link GenericEntity entities} without an {@link GenericEntity#getId()
+   * ID} ({@code null}) will be ignored.
    *
    * @param <ID> is the generic type of the {@link GenericEntity#getId() ID}.
    * @param <E> is the generic type of the {@link GenericEntity entity}.
@@ -76,6 +81,22 @@ public abstract class AbstractLogic extends AbstractBeanMapperSupport {
       }
     }
     return result;
+  }
+
+  /**
+   * Maps a {@link Page paginated list} of persistent entities to a {@link Page paginated list} of transfer objects.
+   *
+   * @param <T> is the generic type of the {@link AbstractTransferObject transfer object}.
+   * @param <E> is the generic type of the {@link PersistenceEntity entity}.
+   * @param page is the paginated list to map from.
+   * @param clazz is the target class to map the paginated entities to.
+   * @return a {@link Page paginated list of entity transfer objects}.
+   */
+  protected <T extends Serializable, E extends PersistenceEntity<?>> Page<T> mapPaginatedEntityList(Page<E> page,
+      Class<T> clazz) {
+
+    List<T> etoList = getBeanMapper().mapList(page.getContent(), clazz);
+    return new PageImpl<>(etoList, page.getPageable(), page.getTotalElements());
   }
 
 }
