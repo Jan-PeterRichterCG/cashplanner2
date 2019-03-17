@@ -1,4 +1,4 @@
-package eu.jprichter.cashplanner2.bankaccountmanagement.dataaccess.api.dao;
+package eu.jprichter.cashplanner2.bankaccountmanagement.dataaccess.api.repo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
