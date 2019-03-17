@@ -7,6 +7,8 @@ eclipse-target
 # NestJS/node_modules/
 # NestJS/.vscode/
 
+CobiGen_Templates/
+
 *.log
 *.class
 *.classpath
