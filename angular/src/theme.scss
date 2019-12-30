@@ -1,7 +1,16 @@
+// additions to the scaffolding see https://teradata.github.io/covalent/#/docs
+
 @import '~@angular/material/theming';
 @import '~@covalent/core/theming/all-theme';
 
-@include mat-core();
+// Define a custom typography config that overrides the font-family
+// or any typography level.
+$typography: mat-typography-config(
+  $font-family: 'Tahoma, Geneva, sans-serif',
+  $headline: mat-typography-level(32px, 48px, 700)
+);
+
+@include mat-core($typography); // $typography is an **optional** argument for the mat-core
 
 $primary: mat-palette($mat-blue, 700);
 $accent:  mat-palette($mat-orange, 800);

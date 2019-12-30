@@ -308,6 +308,13 @@
   dependencies:
     tslib "^1.9.0"
 
+"@covalent/http@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@covalent/http/-/http-2.0.1.tgz#e77942a487df07a971b35dc6099e227f75e8a6c3"
+  integrity sha512-yATessVQNtqwoegAiGjOCszwjcbgSx3wpGjqlNjAr8LZNNi+zp0bmI186jAIBmF65m6WLfSN+VzfY8DXV3+tqg==
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngtools/webpack@7.3.6":
   version "7.3.6"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-7.3.6.tgz#3f90c60f7c1742fa4a557f90def8fe742304f4c5"
